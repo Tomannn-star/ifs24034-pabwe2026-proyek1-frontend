@@ -64,7 +64,7 @@ export async function apiRequest(endpoint, options = {}) {
 
   // Jika token tidak valid / kedaluwarsa, otomatis logout ke login page
   if (response.status === 401) {
-    if (browser && !window.location.pathname.startsWith("/login")) {
+    if (browser && !window.location.pathname.startsWith("/auth/") && window.location.pathname !== "/login") {
       auth.logout(true);
     }
     const errData = await response.json().catch(() => ({}));
